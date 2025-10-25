@@ -1,98 +1,67 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { useSesion } from '@/store';
+import { Usuario } from '@/util/definitions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+export default function IndexScreen() {
+  const router = useRouter();
+  const { setSession } = useSesion();
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+  const checkSession = async () => {
+    try {
+      const storedUser = await AsyncStorage.getItem('user');
+      if (storedUser) {
+        const userObject = JSON.parse(storedUser) as Usuario;
+        setSession({ sesionUsuario: userObject });
+        router.replace('/home');
+      } else {
+      
+      }
+    } catch (error) {
+      console.error("❌ Error al verificar la sesión:", error);
+     
+    }
+  };
 
-export default function HomeScreen() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      checkSession();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
+    <View style={styles.container}>
+      <TouchableOpacity 
+        style={styles.touchable}
+        onPress={() => checkSession()}
+        activeOpacity={0.8}
+      >
         <Image
-         
-          style={styles.reactLogo}
+          source={require('@/assets/images/splash.png')}
+          style={styles.splashImage}
+          resizeMode="contain"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
-
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#2096D4',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  touchable: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  splashImage: {
+    width: 200,
+    height: 200,
   },
 });
