@@ -16,7 +16,7 @@ export default function IndexScreen() {
         setSession({ sesionUsuario: userObject });
         router.replace('/home');
       } else {
-      
+        router.replace('/main');
       }
     } catch (error) {
       console.error("❌ Error al verificar la sesión:", error);

@@ -1,9 +1,19 @@
-const Carrito = () => {
-  return (
-    <div>
-      <h1>Carrito de Compras</h1>
-    </div>
-  );
-};
+// app/(tabs)/home/carrito.tsx
+import { H1 } from '@expo/html-elements';
+import { StyleSheet, View } from 'react-native';
 
-export default Carrito;
+export default function Carrito() {
+  return (
+    <View style={styles.container}>
+      <H1>Your Cart</H1>
+      {/* Rest of your cart content */}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+});
