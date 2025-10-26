@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+
+
 export default function IndexScreen() {
   const router = useRouter();
   const { setSession } = useSesion();
@@ -40,7 +42,7 @@ export default function IndexScreen() {
         activeOpacity={0.8}
       >
         <Image
-          source={require('@/assets/images/splash.png')}
+          source={require('@/assets/images/splash2.png')}
           style={styles.splashImage}
           resizeMode="contain"
         />
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2096D4',
+    backgroundColor: '#fdf0e0',
   },
   touchable: {
     justifyContent: 'center',

@@ -1,12 +1,13 @@
 // app/main.tsx
 import { useRouter } from 'expo-router';
 import {
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 export default function MainScreen() {
@@ -26,7 +27,10 @@ export default function MainScreen() {
 
         {/* Imagen de bienvenida */}
         <View style={styles.imageContainer}>
-         
+          <Image
+            source={require('@/assets/images/pizza.png')}
+            style={styles.welcomeImage}
+          />
         </View>
 
         {/* Botones de acción */}
@@ -86,7 +90,7 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fdf0e0',
   },
   scrollContent: {
     flexGrow: 1,
@@ -117,11 +121,11 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
   },
   welcomeImage: {
     width: 250,
-    height: 200,
+    height: 240,
   },
   actionsContainer: {
     marginBottom: 40,

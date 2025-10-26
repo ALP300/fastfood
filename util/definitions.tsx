@@ -5,6 +5,11 @@ export type Usuario = {
   status: string;
   fk_rol?: number;
 };
+export type Catálogo= {
+  nombre: string;
+  precio: number;
+  descripcion: string;
+}
 
 export type Sesión = {
   sesionUsuario: Usuario | null;
