@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
@@ -37,7 +36,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
               <Image
-                source={require('@/assets/images/carro_imagen.png')} // Imagen para Carrito
+                source={require('@/assets/images/comida.png')} // Imagen para Carrito
                 style={styles.imageStyle}
               />
               {focused && <View style={[styles.overlay, { backgroundColor: '#42628e', opacity: 0.3 }]} />}
@@ -53,7 +52,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
               <Image
-                source={require('@/assets/images/bolsa_imagen.png')} // Imagen para Pedidos
+                source={require('@/assets/images/pedidos.png')} // Imagen para Pedidos
                 style={styles.imageStyle}
               />
               {focused && <View style={[styles.overlay, { backgroundColor: '#42628e', opacity: 0.3 }]} />}
@@ -62,37 +61,7 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Pestaña de Perfil */}
-      <Tabs.Screen
-        name="perfil"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View style={styles.iconContainer}>
-              {(() => {
-                try {
-                  return (
-                    <>
-                      <Image
-                        source={require('@/assets/images/user.png')} // Imagen para Perfil
-                        style={styles.imageStyle}
-                      />
-                      {focused && <View style={[styles.overlay, { backgroundColor: '#42628e', opacity: 0.3 }]} />}
-                    </>
-                  );
-                } catch (e) {
-                  return (
-                    <Ionicons
-                      name={focused ? 'person' : 'person-outline'}
-                      size={30}
-                      color={focused ? '#42628e' : '#C4C4C4'}
-                    />
-                  );
-                }
-              })()}
-            </View>
-          ),
-        }}
-      />
+      
     </Tabs>
   );
 }
