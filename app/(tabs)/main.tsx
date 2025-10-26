@@ -19,7 +19,7 @@ export default function MainScreen() {
         {/* Header con logo */}
         <View style={styles.header}>
          
-          <Text style={styles.title}>Bienvenido</Text>
+          <Text style={styles.title}>Bienvenido a FastFood</Text>
           <Text style={styles.subtitle}>
             Descubre todo lo que tenemos para ti
           </Text>
@@ -66,22 +66,7 @@ export default function MainScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Información adicional */}
-        <View style={styles.features}>
-          <Text style={styles.featuresTitle}>¿Qué puedes hacer?</Text>
-          <View style={styles.featureItem}>
-            <Text style={styles.featureIcon}>🛒</Text>
-            <Text style={styles.featureText}>Comprar productos exclusivos</Text>
-          </View>
-          <View style={styles.featureItem}>
-            <Text style={styles.featureIcon}>🚚</Text>
-            <Text style={styles.featureText}>Seguimiento de pedidos</Text>
-          </View>
-          <View style={styles.featureItem}>
-            <Text style={styles.featureIcon}>⭐</Text>
-            <Text style={styles.featureText}>Ofertas especiales</Text>
-          </View>
-        </View>
+       
       </ScrollView>
     </SafeAreaView>
   );
@@ -147,12 +132,12 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   loginButton: {
-    backgroundColor: '#2096D4',
+    backgroundColor: '#ba8d54',
   },
   registerButton: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ba8d54',
     borderWidth: 2,
-    borderColor: '#2096D4',
+    borderColor: '#ba8d54',
   },
   buttonText: {
     fontSize: 16,
@@ -162,7 +147,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   registerButtonText: {
-    color: '#2096D4',
+    color: '#fff',
+  
   },
   guestLink: {
     paddingVertical: 12,
